@@ -10,13 +10,17 @@
       "post": {
         "summary": "Kích hoạt các sản phẩm về xe máy",
         "description": "Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.\n",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
-            "name": "customerInfo",
-            "description": "Thông tin mua hàng",
+            "name": "body",
+            "description": "Thông tin đơn hàng",
             "schema": {
               "$ref": "#/definitions/XeMay"
             }
@@ -113,12 +117,14 @@
         },
         "frame_number": {
           "type": "string",
-          "example": "12344A12312",
+          "example": "",
           "description": "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
         }
       }
     }
   },
   "host": "www.pvicard.com",
-  "schemes": ["https"]
+  "schemes": [
+    "https"
+  ]
 }

@@ -16,8 +16,8 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: customerInfo
-          description: Thông tin mua hàng
+          name: body
+          description: Thông tin đơn hàng
           schema:
             $ref: "#/definitions/XeMay"
       responses:
@@ -87,7 +87,7 @@ definitions:
         description: "Biển kiểm soát"
       frame_number:
         type: string
-        example: "12344A12312"
+        example: ""
         description: "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
 
 host: www.pvicard.com
