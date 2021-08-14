@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Hướng dẫn sử dụng API pvicard.com",
+    "version": "1.0.0",
+    "title": "API pvicard.com"
+  },
+  "paths": {
+    "/api/xe-may/": {
+      "post": {
+        "summary": "Kích hoạt các sản phẩm về xe máy",
+        "description": "Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.\n",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "customerInfo",
+            "description": "Thông tin mua hàng",
+            "schema": {
+              "$ref": "#/definitions/XeMay"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi bên phía sử dụng API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Lỗi bên server pvicard.com",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "XeMay": {
+      "type": "object",
+      "required": [
+        "prefix",
+        "phone",
+        "email",
+        "name",
+        "address",
+        "start_date",
+        "license_plate",
+        "frame_number"
+      ],
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "example": "MT1",
+          "description": "Loại sản phẩm. Chỉ nhận các giá trị:\n- MT1: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 1 năm.\n- MT2: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 2 năm.\n- EM1: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 1 năm\n- EM2: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 2 năm \n- EP1: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 1 năm\n- EP2: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 2 năm"
+        },
+        "phone": {
+          "type": "string",
+          "example": "0987654321",
+          "description": "Số điện thoại của khách hàng"
+        },
+        "email": {
+          "type": "string",
+          "example": "test@gmail.com",
+          "description": "Email của khách hàng"
+        },
+        "name": {
+          "type": "string",
+          "example": "Tran Van A",
+          "description": "Tên của khách hàng"
+        },
+        "address": {
+          "type": "string",
+          "example": "123 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh",
+          "description": "Địa chỉ của khách hàng"
+        },
+        "start_date": {
+          "type": "string",
+          "example": "2021-01-15",
+          "description": "Ngày bắt đầu bảo hiểm"
+        },
+        "license_plate": {
+          "type": "string",
+          "example": "47A-7777",
+          "description": "Biển kiểm soát"
+        },
+        "frame_number": {
+          "type": "string",
+          "example": "12344A12312",
+          "description": "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
+        }
+      }
+    }
+  },
+  "host": "www.pvicard.com",
+  "schemes": ["https"]
+}
