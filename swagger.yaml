@@ -1,9 +1,8 @@
 swagger: "2.0"
 info:
-  description: Hướng dẫn sử dụng API pvicard.com
+  description: 'Hướng dẫn sử dụng API pvicard.com. Tất cả các request cần được gửi kèm với header "Authorization: Token token-cua-ban"'
   version: 1.0.0
   title: API pvicard.com
-
 paths:
   /api/xe-may/:
     post:
