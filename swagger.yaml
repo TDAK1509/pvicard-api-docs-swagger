@@ -43,6 +43,45 @@ paths:
               message:
                 type: string
                 description: Thông báo lỗi
+  /api/covid/:
+    post:
+      summary: Kích hoạt các sản phẩm an tâm chống dịch
+      description: |
+        Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Thông tin đơn hàng
+          schema:
+            $ref: "#/definitions/AnTamChongDich"
+      responses:
+        200:
+          description: Thành công
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+        400:
+          description: Lỗi bên phía sử dụng API
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
+        500:
+          description: Lỗi bên server pvicard.com
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
 definitions:
   XeMay:
     type: object
@@ -88,6 +127,60 @@ definitions:
         type: string
         example: ""
         description: "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
+  AnTamChongDich:
+    type: object
+    required:
+      - prefix
+      - phone
+      - email
+      - buyer_name
+      - buyer_address
+      - owner_name
+      - owner_address
+      - birthday
+      - id_number
+      - start_date
+    properties:
+      prefix:
+        type: string
+        example: CV1
+        description: "Loại sản phẩm. Chỉ nhận các giá trị:\n- CV1: BHCNKH - An Tâm Chống Dịch 199K.\n- CV2: BHCNKH - An Tâm Chống Dịch 319K.\n- CV3: BHCNKH - An Tâm Chống Dịch 599K."
+      phone:
+        type: string
+        example: 0987654321
+        description: "Số điện thoại của khách hàng"
+      email:
+        type: string
+        example: long.ly@gmail.com
+        description: "Email của khách hàng"
+      buyer_name:
+        type: string
+        example: Tiểu Lý Phi Long
+        description: "Tên của người mua"
+      buyer_address:
+        type: string
+        example: "123 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh"
+        description: "Địa chỉ của người mua"
+      owner_name:
+        type: string
+        example: Diệp Vấn
+        description: "Tên của người thụ hương"
+      owner_address:
+        type: string
+        example: "345 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh"
+        description: "Địa chỉ của người thụ hưởng"
+      birthday:
+        type: string
+        example: "1999-02-15"
+        description: "Ngày sinh người thụ hưởng"
+      id_number:
+        type: string
+        example: "033010001234"
+        description: "Số CMND/CCCD/Passport của người thụ hưởng"
+      start_date:
+        type: string
+        example: "2021-01-15"
+        description: "Ngày bắt đầu bảo hiểm"
 
 host: www.pvicard.com
 schemes:
