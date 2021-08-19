@@ -94,11 +94,12 @@ definitions:
       - start_date
       - license_plate
       - frame_number
+      - capacity
     properties:
       prefix:
         type: string
         example: MT1
-        description: "Loại sản phẩm. Chỉ nhận các giá trị:\n- MT1: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 1 năm.\n- MT2: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 2 năm.\n- EM1: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 1 năm\n- EM2: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 2 năm \n- EP1: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 1 năm\n- EP2: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 2 năm"
+        description: "Loại sản phẩm. Chỉ nhận các giá trị:\n- MT1: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 1 năm.\n- MT2: Bảo hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh trên 50cc - 2 năm.\n- EM1: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 1 năm\n- EM2: Bảo Hiểm Bắt Buộc TNDS - Xe Mô Tô 2 bánh dưới 50cc/Xe Máy Điện - 2 năm \n- EP1: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 1 năm\n- EP2: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh dưới 50cc/ Xe Máy Điện - 2 năm\n- MP1: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh trên 50cc - 1 năm\n- MP2: Bảo Hiểm Bắt Buộc TNDS & Tai nạn Người ngồi trên xe - Xe Mô Tô 2 bánh trên 50cc - 2 năm"
       phone:
         type: string
         example: 0987654321
@@ -127,6 +128,10 @@ definitions:
         type: string
         example: ""
         description: "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
+      capacity:
+        type: string
+        example: 2
+        description: "- Xe dưới 50cc: 1\n- Xe trên 50cc: 2\n- Xe điện: 3"
   AnTamChongDich:
     type: object
     required:
