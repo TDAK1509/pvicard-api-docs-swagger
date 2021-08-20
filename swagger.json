@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Hướng dẫn sử dụng API pvicard.com. Tất cả các request cần được gửi kèm với header \"Authorization: Token token-cua-ban\"",
+    "description": "Hướng dẫn sử dụng API pvicard.com. Base URL: https://www.pvicard.com. Tất cả các request cần được gửi kèm với header \"Authorization: Token token-cua-ban\"",
     "version": "1.0.0",
     "title": "API pvicard.com"
   },
@@ -34,6 +34,9 @@
               "properties": {
                 "success": {
                   "type": "boolean"
+                },
+                "request_id": {
+                  "type": "string"
                 }
               }
             }
@@ -93,6 +96,70 @@
               "properties": {
                 "success": {
                   "type": "boolean"
+                },
+                "request_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi bên phía sử dụng API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Lỗi bên server pvicard.com",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/get-pdf/": {
+      "post": {
+        "summary": "Lấy link file pdf GCNBH",
+        "description": "GCNBH sẽ không có link ngay khi POST các API trên, cần phải đợi một lúc mới có link.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/GetPdf"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "pdf_url": {
+                  "type": "string"
                 }
               }
             }
@@ -126,6 +193,19 @@
     }
   },
   "definitions": {
+    "GetPdf": {
+      "type": "object",
+      "required": [
+        "request_id"
+      ],
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "example": "CV1ABCDFWEF",
+          "description": "Request ID được trả về từ các API trên"
+        }
+      }
+    },
     "XeMay": {
       "type": "object",
       "required": [
