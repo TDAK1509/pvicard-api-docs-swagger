@@ -45,6 +45,47 @@ paths:
               message:
                 type: string
                 description: Thông báo lỗi
+  /api/tai-nan/:
+    post:
+      summary: Kích hoạt các sản phẩm tai nạn 24/7
+      description: |
+        Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Thông tin đơn hàng
+          schema:
+            $ref: "#/definitions/TaiNan"
+      responses:
+        200:
+          description: Thành công
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              request_id:
+                type: string
+        400:
+          description: Lỗi bên phía sử dụng API
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
+        500:
+          description: Lỗi bên server pvicard.com
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
   /api/covid/:
     post:
       summary: Kích hoạt các sản phẩm an tâm chống dịch
@@ -136,6 +177,65 @@ definitions:
         type: string
         example: 2
         description: "- Xe dưới 50cc: 1\n- Xe trên 50cc: 2\n- Xe điện: 3"
+  AnTamChongDich:
+    type: object
+    required:
+      - prefix
+      - phone
+      - email
+      - buyer_name
+      - buyer_address
+      - owner_name
+      - owner_address
+      - birthday
+      - gender
+      - id_number
+      - start_date
+    properties:
+      prefix:
+        type: string
+        example: AC1
+        description: "Loại sản phẩm. Chỉ nhận các giá trị:\n- AC1: Bảo hiểm Tai nạn cá nhân 24/24 - 70K.\n- AC2: Bảo hiểm Tai nạn cá nhân 24/24 - 140000K.\n- AC3: Bảo hiểm Tai nạn cá nhân 24/24 - 240000K"
+      phone:
+        type: string
+        example: 0987654321
+        description: "Số điện thoại của khách hàng"
+      email:
+        type: string
+        example: long.ly@gmail.com
+        description: "Email của khách hàng"
+      buyer_name:
+        type: string
+        example: Tiểu Lý Phi Long
+        description: "Tên của người mua"
+      buyer_address:
+        type: string
+        example: "123 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh"
+        description: "Địa chỉ của người mua"
+      owner_name:
+        type: string
+        example: Diệp Vấn
+        description: "Tên của người thụ hương"
+      owner_address:
+        type: string
+        example: "345 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh"
+        description: "Địa chỉ của người thụ hưởng"
+      birthday:
+        type: string
+        example: "1999-02-15"
+        description: "Ngày sinh người thụ hưởng"
+      gender:
+        type: string
+        example: "1"
+        description: "Giới tính. Nam 1, Nữ 0."
+      id_number:
+        type: string
+        example: "033010001234"
+        description: "Số CMND/CCCD/Passport của người thụ hưởng"
+      start_date:
+        type: string
+        example: "2021-01-15"
+        description: "Ngày bắt đầu bảo hiểm"
   AnTamChongDich:
     type: object
     required:
