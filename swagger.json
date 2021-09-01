@@ -68,6 +68,172 @@
         }
       }
     },
+    "/api/oto/": {
+      "post": {
+        "summary": "Kích hoạt các sản phẩm về ô tô",
+        "description": "Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Thông tin đơn hàng",
+            "schema": {
+              "$ref": "#/definitions/Oto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "request_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi bên phía sử dụng API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Lỗi bên server pvicard.com",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/get-provinces/": {
+      "get": {
+        "summary": "Lấy các tỉnh thành và mã để dùng cho /api/oto/",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công. Nhận được mảng thông tin [Mã tỉnh, Tên tỉnh]",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "provinces": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Lỗi bên server pvicard.com",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tai-nan/": {
+      "post": {
+        "summary": "Kích hoạt các sản phẩm tai nạn 24/7",
+        "description": "Nhập thông tin khách hàng và loại mã, email xác nhận sản phẩm sẽ được tự động gửi cho khách hàng.\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Thông tin đơn hàng",
+            "schema": {
+              "$ref": "#/definitions/TaiNan"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "request_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Lỗi bên phía sử dụng API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Lỗi bên server pvicard.com",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Thông báo lỗi"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/covid/": {
       "post": {
         "summary": "Kích hoạt các sản phẩm an tâm chống dịch",
@@ -129,83 +295,9 @@
           }
         }
       }
-    },
-    "/api/get-pdf/": {
-      "post": {
-        "summary": "Lấy link file pdf GCNBH",
-        "description": "GCNBH sẽ không có link ngay khi POST các API trên, cần phải đợi một lúc mới có link.\n",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/GetPdf"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Thành công",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "success": {
-                  "type": "boolean"
-                },
-                "pdf_url": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Lỗi bên phía sử dụng API",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "description": "Thông báo lỗi"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Lỗi bên server pvicard.com",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "description": "Thông báo lỗi"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "definitions": {
-    "GetPdf": {
-      "type": "object",
-      "required": [
-        "request_id"
-      ],
-      "properties": {
-        "request_id": {
-          "type": "string",
-          "example": "CV1ABCDFWEF",
-          "description": "Request ID được trả về từ các API trên"
-        }
-      }
-    },
     "XeMay": {
       "type": "object",
       "required": [
@@ -264,6 +356,152 @@
           "type": "string",
           "example": 2,
           "description": "- Xe dưới 50cc: 1\n- Xe trên 50cc: 2\n- Xe điện: 3"
+        }
+      }
+    },
+    "Oto": {
+      "type": "object",
+      "required": [
+        "prefix",
+        "phone",
+        "email",
+        "name",
+        "address",
+        "start_date",
+        "province_id",
+        "license_plate",
+        "frame_number",
+        "engine_number",
+        "car_seats"
+      ],
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "example": "C41",
+          "description": "Loại sản phẩm. Chỉ nhận các giá trị:\n- C41: Bảo hiểm Bắt Buộc TNDS - Xe Ô Tô dưới 6 chỗ - Không KDVT.\n- C71: Bảo hiểm Bắt Buộc TNDS - Xe Ô Tô từ 6 chỗ đến 11 chỗ - Không KDVT.\n- CB6: Bảo Hiểm Bắt Buộc TNDS - Xe Ô Tô dưới 6 chỗ (Có Kinh Doanh).\n- CB7: Bảo Hiểm Bắt Buộc TNDS - Xe Ô Tô 7 chỗ (Có Kinh Doanh).\n- CB8: Bảo Hiểm Bắt Buộc TNDS - Xe Ô Tô 8 chỗ (Có Kinh Doanh)."
+        },
+        "phone": {
+          "type": "string",
+          "example": "0987654321",
+          "description": "Số điện thoại của khách hàng"
+        },
+        "email": {
+          "type": "string",
+          "example": "test@gmail.com",
+          "description": "Email của khách hàng"
+        },
+        "name": {
+          "type": "string",
+          "example": "Tran Van A",
+          "description": "Tên của khách hàng"
+        },
+        "address": {
+          "type": "string",
+          "example": "123 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh",
+          "description": "Địa chỉ của khách hàng"
+        },
+        "start_date": {
+          "type": "string",
+          "example": "2021-01-15",
+          "description": "Ngày bắt đầu bảo hiểm"
+        },
+        "province_id": {
+          "type": "string",
+          "example": "VI02",
+          "description": "Lấy từ API /api/get-province/"
+        },
+        "license_plate": {
+          "type": "string",
+          "example": "47A-7777",
+          "description": "Biển kiểm soát"
+        },
+        "frame_number": {
+          "type": "string",
+          "example": "",
+          "description": "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
+        },
+        "engine_number": {
+          "type": "string",
+          "example": "",
+          "description": "Số máy. Có thể bỏ trống nếu đã có biển kiểm soát."
+        },
+        "car_seats": {
+          "type": "string",
+          "example": 2,
+          "description": "Số chỗ ngồi của xe.\n- Mã C41: 2-6.\n- Mã C71: 6-12.\n- Mã CB6: 2-6.\n- Mã CB7: 7.\n- Mã CB8: 8."
+        }
+      }
+    },
+    "TaiNan": {
+      "type": "object",
+      "required": [
+        "prefix",
+        "phone",
+        "email",
+        "buyer_name",
+        "buyer_address",
+        "owner_name",
+        "owner_address",
+        "birthday",
+        "gender",
+        "id_number",
+        "start_date"
+      ],
+      "properties": {
+        "prefix": {
+          "type": "string",
+          "example": "AC1",
+          "description": "Loại sản phẩm. Chỉ nhận các giá trị:\n- AC1: Bảo hiểm Tai nạn cá nhân 24/24 - 70K.\n- AC2: Bảo hiểm Tai nạn cá nhân 24/24 - 140000K.\n- AC3: Bảo hiểm Tai nạn cá nhân 24/24 - 240000K"
+        },
+        "phone": {
+          "type": "string",
+          "example": "0987654321",
+          "description": "Số điện thoại của khách hàng"
+        },
+        "email": {
+          "type": "string",
+          "example": "long.ly@gmail.com",
+          "description": "Email của khách hàng"
+        },
+        "buyer_name": {
+          "type": "string",
+          "example": "Tiểu Lý Phi Long",
+          "description": "Tên của người mua"
+        },
+        "buyer_address": {
+          "type": "string",
+          "example": "123 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh",
+          "description": "Địa chỉ của người mua"
+        },
+        "owner_name": {
+          "type": "string",
+          "example": "Diệp Vấn",
+          "description": "Tên của người thụ hương"
+        },
+        "owner_address": {
+          "type": "string",
+          "example": "345 Lê Lợi, P. Lê Lai, Q.1, Tp. Hồ Chí Minh",
+          "description": "Địa chỉ của người thụ hưởng"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1999-02-15",
+          "description": "Ngày sinh người thụ hưởng"
+        },
+        "gender": {
+          "type": "string",
+          "example": "1",
+          "description": "Giới tính. Nam 1, Nữ 0."
+        },
+        "id_number": {
+          "type": "string",
+          "example": "033010001234",
+          "description": "Số CMND/CCCD/Passport của người thụ hưởng"
+        },
+        "start_date": {
+          "type": "string",
+          "example": "2021-01-15",
+          "description": "Ngày bắt đầu bảo hiểm"
         }
       }
     },

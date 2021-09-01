@@ -86,6 +86,33 @@ paths:
               message:
                 type: string
                 description: Thông báo lỗi
+  /api/get-provinces/:
+    get:
+      summary: Lấy các tỉnh thành và mã để dùng cho /api/oto/
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Thành công. Nhận được mảng thông tin [Mã tỉnh, Tên tỉnh]
+          schema:
+            type: object
+            properties:
+              provinces:
+                type: array
+                items:
+                  type: array
+                  items:
+                    type: string
+        500:
+          description: Lỗi bên server pvicard.com
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
   /api/tai-nan/:
     post:
       summary: Kích hoạt các sản phẩm tai nạn 24/7
