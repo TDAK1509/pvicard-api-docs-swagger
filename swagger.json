@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Hướng dẫn sử dụng API pvicard.com. Base URL: https://www.pvicard.com. Tất cả các request cần được gửi kèm với header \"Authorization: Token token-cua-ban\"",
+    "description": "Hướng dẫn sử dụng API pvicard.com. Base URL prod: https://www.pvicard.com. Base URL staging: https://staging.pvicard.com. Tất cả các request cần được gửi kèm với header \"Authorization: Token token-cua-ban\"",
     "version": "1.0.0",
     "title": "API pvicard.com"
   },
