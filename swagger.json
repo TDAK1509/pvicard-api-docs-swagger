@@ -353,7 +353,7 @@
           "description": "Số khung. Có thể bỏ trống nếu đã có biển kiểm soát."
         },
         "capacity": {
-          "type": "string",
+          "type": "integer",
           "example": 2,
           "description": "- Xe dưới 50cc: 1\n- Xe trên 50cc: 2\n- Xe điện: 3"
         }
