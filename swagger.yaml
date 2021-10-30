@@ -195,6 +195,45 @@ paths:
               message:
                 type: string
                 description: Thông báo lỗi
+  /api/get-pdf/:
+    post:
+      summary: Lấy link file PDF
+      description: |
+        Lấy link file PDF chứng nhận bảo hiểm
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Request ID
+          schema:
+            $ref: "#/definitions/GetPdf"
+      responses:
+        200:
+          description: Thành công
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+        400:
+          description: Lỗi bên phía sử dụng API
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
+        500:
+          description: Lỗi bên server pvicard.com
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Thông báo lỗi
 definitions:
   XeMay:
     type: object
@@ -417,6 +456,15 @@ definitions:
         type: string
         example: "2021-01-15"
         description: "Ngày bắt đầu bảo hiểm"
+  GetPdf:
+    type: object
+    required:
+      - request_id
+    properties:
+      request_id:
+        type: string
+        example: "MT1675267028"
+        description: "Request ID được trả về từ các API kích hoạt sản phẩm"
 
 host: www.pvicard.com
 schemes:
